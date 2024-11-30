@@ -14,6 +14,10 @@
 		106D2B082CF76D52009A0BC2 /* FlatApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B062CF76D52009A0BC2 /* FlatApp.xcdatamodeld */; };
 		106D2B0A2CF76D54009A0BC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 106D2B092CF76D54009A0BC2 /* Assets.xcassets */; };
 		106D2B0D2CF76D54009A0BC2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 106D2B0C2CF76D54009A0BC2 /* Base */; };
+		106D2B182CF76D9A009A0BC2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B172CF76D9A009A0BC2 /* Message.swift */; };
+		106D2B1A2CF76DD6009A0BC2 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B192CF76DD6009A0BC2 /* Room.swift */; };
+		106D2B1D2CF76E12009A0BC2 /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B1C2CF76E12009A0BC2 /* MessageGenerator.swift */; };
+		106D2B202CF779DE009A0BC2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B1F2CF779DE009A0BC2 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		106D2B092CF76D54009A0BC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		106D2B0C2CF76D54009A0BC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		106D2B0E2CF76D54009A0BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		106D2B172CF76D9A009A0BC2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		106D2B192CF76DD6009A0BC2 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		106D2B1C2CF76E12009A0BC2 /* MessageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
+		106D2B1F2CF779DE009A0BC2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +66,60 @@
 		106D2AFC2CF76D52009A0BC2 /* FlatApp */ = {
 			isa = PBXGroup;
 			children = (
+				106D2B1B2CF76E06009A0BC2 /* Service */,
+				106D2B162CF76D8E009A0BC2 /* Model */,
+				106D2B142CF76D78009A0BC2 /* Supporting Files */,
+				106D2B1E2CF779C8009A0BC2 /* UI */,
+				106D2B152CF76D86009A0BC2 /* Core Data */,
+			);
+			path = FlatApp;
+			sourceTree = "<group>";
+		};
+		106D2B142CF76D78009A0BC2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				106D2AFD2CF76D52009A0BC2 /* AppDelegate.swift */,
 				106D2AFF2CF76D52009A0BC2 /* SceneDelegate.swift */,
-				106D2B012CF76D52009A0BC2 /* ViewController.swift */,
 				106D2B032CF76D52009A0BC2 /* Main.storyboard */,
 				106D2B092CF76D54009A0BC2 /* Assets.xcassets */,
 				106D2B0B2CF76D54009A0BC2 /* LaunchScreen.storyboard */,
 				106D2B0E2CF76D54009A0BC2 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		106D2B152CF76D86009A0BC2 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
 				106D2B062CF76D52009A0BC2 /* FlatApp.xcdatamodeld */,
 			);
-			path = FlatApp;
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		106D2B162CF76D8E009A0BC2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				106D2B172CF76D9A009A0BC2 /* Message.swift */,
+				106D2B192CF76DD6009A0BC2 /* Room.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		106D2B1B2CF76E06009A0BC2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				106D2B1C2CF76E12009A0BC2 /* MessageGenerator.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		106D2B1E2CF779C8009A0BC2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				106D2B012CF76D52009A0BC2 /* ViewController.swift */,
+				106D2B1F2CF779DE009A0BC2 /* ViewModel.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +195,11 @@
 			files = (
 				106D2B082CF76D52009A0BC2 /* FlatApp.xcdatamodeld in Sources */,
 				106D2B022CF76D52009A0BC2 /* ViewController.swift in Sources */,
+				106D2B1A2CF76DD6009A0BC2 /* Room.swift in Sources */,
+				106D2B182CF76D9A009A0BC2 /* Message.swift in Sources */,
+				106D2B1D2CF76E12009A0BC2 /* MessageGenerator.swift in Sources */,
 				106D2AFE2CF76D52009A0BC2 /* AppDelegate.swift in Sources */,
+				106D2B202CF779DE009A0BC2 /* ViewModel.swift in Sources */,
 				106D2B002CF76D52009A0BC2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,7 +354,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTV28US9SX;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FlatApp/Info.plist;
+				INFOPLIST_FILE = "FlatApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -311,9 +367,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sapgv.FlatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -326,7 +386,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTV28US9SX;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FlatApp/Info.plist;
+				INFOPLIST_FILE = "FlatApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -339,9 +399,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sapgv.FlatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
