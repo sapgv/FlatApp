@@ -30,3 +30,9 @@ var dateFormatter: DateFormatter = {
     dateFormatter.locale = Locale(identifier: "ru")
     return dateFormatter
 }()
+
+extension Notification.Name {
+    
+    static let didSaveCoreDataMessage = Notification.Name("didSaveCoreDataMessage")
+    
+}

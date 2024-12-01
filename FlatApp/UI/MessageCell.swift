@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class MessageCell: UITableViewCell {
 
@@ -21,24 +22,39 @@ final class MessageCell: UITableViewCell {
         self.message = nil
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self, selector: #selector(didSaveCoreDataMessage), name: .didSaveCoreDataMessage, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func setup(message: CoreDataMessage) {
         self.message = message
         self.idLabel.text = "\(message.id)"
         self.roomIdLabel.text = "\(message.roomId)"
         self.dateLabel.text = message.date?.text
         self.messageLabel.text = "Some message text \(message.text ?? "")"
-        self.animateBackgroundColor(message: message)
     }
     
 }
 
 extension MessageCell {
     
-    private func animateBackgroundColor(message: CoreDataMessage) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.contentView.backgroundColor = .green.withAlphaComponent(0.1)
+    @objc
+    private func didSaveCoreDataMessage(notification: Notification) {
+        guard let objectId = notification.object as? NSManagedObjectID else { return }
+        guard self.message?.objectID == objectId else { return }
+        self.animateBackgroundColor()
+    }
+    
+    private func animateBackgroundColor() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.contentView.backgroundColor = .green.withAlphaComponent(0.3)
         }) { _ in
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.5) {
                 self.contentView.backgroundColor = .white
             }
         }

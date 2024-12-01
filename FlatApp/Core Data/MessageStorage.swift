@@ -19,7 +19,7 @@ final class MessageStorage {
     
     func save(message: Message, completion: @escaping (Errors?) -> Void) {
         
-        self.privateContext.perform {
+        self.privateContext.perform { [privateContext] in
             
             let coreDataMessage = self.createMessage(message: message, context: self.privateContext)
             
@@ -27,14 +27,14 @@ final class MessageStorage {
                 coreDataMessage.fill(message: message)
             }
             
-            CoreDataStack.shared.save(context: self.privateContext) { result in
+            CoreDataStack.shared.save(context: privateContext) { result in
+                
+                privateContext.refresh(coreDataMessage, mergeChanges: false)
                 
                 switch result {
                 case .success, .hasNoChanges:
-                    self.privateContext.refresh(coreDataMessage, mergeChanges: true)
-                    self.privateContext.perform {
-                        self.data[message.id] = coreDataMessage.objectID
-                    }
+                    self.sendSaveNotification(coreDataMessage: coreDataMessage)
+                    self.updateMessageData(coreDataMessage: coreDataMessage)
                     completion(nil)
                 case .failure:
                     completion(.saveFailure("CoreDataMessage"))
@@ -50,11 +50,7 @@ final class MessageStorage {
 
 extension MessageStorage {
     
-    enum Errors: Error {
-        case saveFailure(_ entityName: String)
-    }
-    
-    func createMessage(message: Message, context: NSManagedObjectContext) -> CoreDataMessage {
+    private func createMessage(message: Message, context: NSManagedObjectContext) -> CoreDataMessage {
         
         if let objectID = self.data[message.id], let coreDataMessage = context.object(with: objectID) as? CoreDataMessage {
             return coreDataMessage
@@ -70,20 +66,36 @@ extension MessageStorage {
         
     }
     
-    func fetchMessage(id: Int, context: NSManagedObjectContext) -> CoreDataMessage? {
+    private func fetchMessage(id: Int, context: NSManagedObjectContext) -> CoreDataMessage? {
         
-        let request = NSFetchRequest<CoreDataMessage>(entityName: "CoreDataMessage")
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "id == %i", id)
+        let predicate = NSPredicate(format: "id == %i", id)
         
-        do {
-            let results = try context.fetch(request)
-            return results.first
+        return CoreDataStack.shared.fetchOne(type: CoreDataMessage.self, predicate: predicate, context: context)
+        
+    }
+    
+    private func updateMessageData(coreDataMessage: CoreDataMessage) {
+        
+        self.privateContext.perform {
+            let id = Int(coreDataMessage.id)
+            self.data[id] = coreDataMessage.objectID
         }
-        catch {
-            return nil
-        }
         
+    }
+    
+    private func sendSaveNotification(coreDataMessage: CoreDataMessage) {
+        
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .didSaveCoreDataMessage, object: coreDataMessage.objectID)
+        }
+    }
+    
+}
+
+extension MessageStorage {
+    
+    enum Errors: Error {
+        case saveFailure(_ entityName: String)
     }
     
 }

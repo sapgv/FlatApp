@@ -63,7 +63,7 @@ extension MessageGenerator {
             
             guard let self = self else { return }
                 
-            let message = Message(id: Int.random(in: 995...1000), roomId: Int.random(in: 0...4), date: self.date)
+            let message = Message(id: Int.random(in: 0...1000), roomId: Int.random(in: 0...4), date: self.date)
             
             DispatchQueue.main.async {
             

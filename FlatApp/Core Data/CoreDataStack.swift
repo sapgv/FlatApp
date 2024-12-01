@@ -67,6 +67,22 @@ final class CoreDataStack {
         
     }
     
+    func fetchOne<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, context: NSManagedObjectContext) -> T? {
+        
+        let request = NSFetchRequest<T>(entityName: T.entityName)
+        request.fetchLimit = 1
+        request.predicate = predicate
+        
+        do {
+            let results = try context.fetch(request)
+            return results.first
+        }
+        catch {
+            return nil
+        }
+        
+    }
+    
 }
 
 extension CoreDataStack {
@@ -75,6 +91,14 @@ extension CoreDataStack {
         case success
         case hasNoChanges
         case failure
+    }
+    
+}
+
+extension NSManagedObject {
+    
+    static var entityName: String {
+        return String(describing: self)
     }
     
 }
