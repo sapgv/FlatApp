@@ -21,7 +21,7 @@ final class MessageStorage {
         
         self.privateContext.perform { [privateContext] in
             
-            let coreDataMessage = self.createMessage(message: message, context: self.privateContext)
+            let coreDataMessage = self.createMessage(message: message, context: privateContext)
             
             if message.date > (coreDataMessage.date ?? .distantPast) {
                 coreDataMessage.fill(message: message)
@@ -37,12 +37,32 @@ final class MessageStorage {
                     self.updateMessageData(coreDataMessage: coreDataMessage)
                     completion(nil)
                 case .failure:
-                    completion(.saveFailure("CoreDataMessage"))
+                    completion(.saveFailure(CoreDataMessage.entityName))
                 }
                 
             }
             
         }
+        
+    }
+    
+    func fetchRequest(roomId: Int) -> NSFetchRequest<CoreDataMessage> {
+        
+        let predicate = NSPredicate(format: "roomId == %i", roomId)
+        
+        let request = CoreDataStack.shared.fetchRequest(type: CoreDataMessage.self, predicate: predicate, sort: [NSSortDescriptor(key: "date", ascending: true)])
+        
+        return request
+        
+    }
+    
+    func fetchRequest(text: String) -> NSFetchRequest<CoreDataMessage> {
+
+        let predicate = NSPredicate(format: "text CONTAINS[cd] %@", text)
+        
+        let request = CoreDataStack.shared.fetchRequest(type: CoreDataMessage.self, predicate: predicate, sort: [NSSortDescriptor(key: "date", ascending: true)])
+        
+        return request
         
     }
     

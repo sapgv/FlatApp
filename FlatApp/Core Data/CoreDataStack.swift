@@ -7,6 +7,11 @@
 
 import CoreData
 
+enum StoreType: String {
+    case sql = "SQLite"
+    case inMemory = "InMemory"
+}
+
 final class CoreDataStack {
     
     private let container: NSPersistentContainer
@@ -15,9 +20,16 @@ final class CoreDataStack {
     
     static let shared: CoreDataStack = CoreDataStack()
     
-    private init() {
+    private init(model: String = "FlatApp", storeType: StoreType = .sql) {
         
         self.container = NSPersistentContainer(name: "FlatApp")
+        
+        if let storeDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).last {
+            let storeUrl = storeDirectory.appendingPathComponent("\(model).sqlite")
+            let storeDescription = NSPersistentStoreDescription(url: storeUrl)
+            storeDescription.type = storeType.rawValue
+            container.persistentStoreDescriptions = [storeDescription]
+        }
         
         self.container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             
@@ -64,6 +76,15 @@ final class CoreDataStack {
                 completion?(.failure)
             }
         }
+        
+    }
+    
+    func fetchRequest<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sort: [NSSortDescriptor]? = nil) -> NSFetchRequest<T> {
+        
+        let request = NSFetchRequest<T>(entityName: T.entityName)
+        request.predicate = predicate
+        request.sortDescriptors = sort
+        return request
         
     }
     

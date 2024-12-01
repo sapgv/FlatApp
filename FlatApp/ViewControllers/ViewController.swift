@@ -51,9 +51,9 @@ extension ViewController {
     }
     
     private func setupFetchController() {
-        let fetchRequest = NSFetchRequest<CoreDataMessage>(entityName: "CoreDataMessage")
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        let fetchRequest = NSFetchRequest<CoreDataMessage>(entityName: CoreDataMessage.entityName)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         self.fetchController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         self.fetchController.delegate = self
     }
