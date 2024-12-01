@@ -17,33 +17,23 @@ final class MessageGenerator {
     
     weak var delegate: MessageGeneratorDelegate?
     
-    private var timeInterval: TimeInterval = Double(Int.random(in: 1...5)) {
-        didSet {
-            print("NEW TIME INTERVAL \(timeInterval)")
-        }
-    }
+    private var timeInterval: TimeInterval = Double(Int.random(in: 1...5))
     
     private let queue = DispatchQueue(label: "MessageGenerator.Queue.\(UUID().uuidString)")
     
-    private lazy var date_: Date = Date()
-    private var date: Date {
-        get {
-            return date_
-        }
-        set {
-            self.date_ = newValue
-        }
-    }
+    private lazy var date: Date = Date()
     
     private var timer: Timer?
     
     func generate() {
         
+        self.date = Date()
+        
         self.fire()
         
     }
     
-    func cancel() {
+    func stop() {
         
         self.timer?.invalidate()
         
@@ -59,13 +49,7 @@ extension MessageGenerator {
         print("")
         print("Fire in \(self.timeInterval) seconds. CurrentDate \(Date())")
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + self.timeInterval) {
-//            self.fireAction()
-//        }
-        
-        
-        
-        
+        self.timer = Timer.scheduledTimer(timeInterval: self.timeInterval, target: self, selector: #selector(fireAction), userInfo: nil, repeats: false)
         
     }
     
@@ -79,7 +63,7 @@ extension MessageGenerator {
             
             guard let self = self else { return }
                 
-            let message = Message(id: Int.random(in: 0...1000), roomId: Int.random(in: 0...4), date: self.date)
+            let message = Message(id: Int.random(in: 995...1000), roomId: Int.random(in: 0...4), date: self.date)
             
             DispatchQueue.main.async {
             

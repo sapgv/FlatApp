@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1038861B2CFB14A400FAD046 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038861A2CFB14A400FAD046 /* CoreDataStack.swift */; };
+		1038861F2CFB182900FAD046 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038861D2CFB182900FAD046 /* MessageCell.swift */; };
+		103886202CFB182900FAD046 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1038861E2CFB182900FAD046 /* MessageCell.xib */; };
+		103886232CFB18FA00FAD046 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103886222CFB18FA00FAD046 /* Extensions.swift */; };
+		103886252CFB1AA100FAD046 /* MessageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103886242CFB1AA100FAD046 /* MessageStorage.swift */; };
 		106D2AFE2CF76D52009A0BC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2AFD2CF76D52009A0BC2 /* AppDelegate.swift */; };
 		106D2B002CF76D52009A0BC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2AFF2CF76D52009A0BC2 /* SceneDelegate.swift */; };
 		106D2B022CF76D52009A0BC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B012CF76D52009A0BC2 /* ViewController.swift */; };
@@ -18,9 +23,15 @@
 		106D2B1A2CF76DD6009A0BC2 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B192CF76DD6009A0BC2 /* Room.swift */; };
 		106D2B1D2CF76E12009A0BC2 /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B1C2CF76E12009A0BC2 /* MessageGenerator.swift */; };
 		106D2B202CF779DE009A0BC2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D2B1F2CF779DE009A0BC2 /* ViewModel.swift */; };
+		107AD3E42CFC8BA6004709AA /* CoreDataMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107AD3E32CFC8BA6004709AA /* CoreDataMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1038861A2CFB14A400FAD046 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		1038861D2CFB182900FAD046 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		1038861E2CFB182900FAD046 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		103886222CFB18FA00FAD046 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		103886242CFB1AA100FAD046 /* MessageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStorage.swift; sourceTree = "<group>"; };
 		106D2AFA2CF76D52009A0BC2 /* FlatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		106D2AFD2CF76D52009A0BC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		106D2AFF2CF76D52009A0BC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +45,7 @@
 		106D2B192CF76DD6009A0BC2 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		106D2B1C2CF76E12009A0BC2 /* MessageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
 		106D2B1F2CF779DE009A0BC2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		107AD3E32CFC8BA6004709AA /* CoreDataMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1038861C2CFB180F00FAD046 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1038861D2CFB182900FAD046 /* MessageCell.swift */,
+				1038861E2CFB182900FAD046 /* MessageCell.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		103886212CFB18F000FAD046 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				103886222CFB18FA00FAD046 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		106D2AF12CF76D52009A0BC2 = {
 			isa = PBXGroup;
 			children = (
@@ -66,10 +95,12 @@
 		106D2AFC2CF76D52009A0BC2 /* FlatApp */ = {
 			isa = PBXGroup;
 			children = (
+				103886212CFB18F000FAD046 /* Extensions */,
+				1038861C2CFB180F00FAD046 /* UI */,
 				106D2B1B2CF76E06009A0BC2 /* Service */,
 				106D2B162CF76D8E009A0BC2 /* Model */,
 				106D2B142CF76D78009A0BC2 /* Supporting Files */,
-				106D2B1E2CF779C8009A0BC2 /* UI */,
+				106D2B1E2CF779C8009A0BC2 /* ViewControllers */,
 				106D2B152CF76D86009A0BC2 /* Core Data */,
 			);
 			path = FlatApp;
@@ -92,6 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				106D2B062CF76D52009A0BC2 /* FlatApp.xcdatamodeld */,
+				1038861A2CFB14A400FAD046 /* CoreDataStack.swift */,
+				103886242CFB1AA100FAD046 /* MessageStorage.swift */,
+				107AD3E32CFC8BA6004709AA /* CoreDataMessage.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -113,13 +147,13 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		106D2B1E2CF779C8009A0BC2 /* UI */ = {
+		106D2B1E2CF779C8009A0BC2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				106D2B012CF76D52009A0BC2 /* ViewController.swift */,
 				106D2B1F2CF779DE009A0BC2 /* ViewModel.swift */,
 			);
-			path = UI;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				106D2B0A2CF76D54009A0BC2 /* Assets.xcassets in Resources */,
+				103886202CFB182900FAD046 /* MessageCell.xib in Resources */,
 				106D2B0D2CF76D54009A0BC2 /* Base in Resources */,
 				106D2B052CF76D52009A0BC2 /* Base in Resources */,
 			);
@@ -194,12 +229,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				106D2B082CF76D52009A0BC2 /* FlatApp.xcdatamodeld in Sources */,
+				103886252CFB1AA100FAD046 /* MessageStorage.swift in Sources */,
+				1038861F2CFB182900FAD046 /* MessageCell.swift in Sources */,
 				106D2B022CF76D52009A0BC2 /* ViewController.swift in Sources */,
 				106D2B1A2CF76DD6009A0BC2 /* Room.swift in Sources */,
+				1038861B2CFB14A400FAD046 /* CoreDataStack.swift in Sources */,
 				106D2B182CF76D9A009A0BC2 /* Message.swift in Sources */,
 				106D2B1D2CF76E12009A0BC2 /* MessageGenerator.swift in Sources */,
+				107AD3E42CFC8BA6004709AA /* CoreDataMessage.swift in Sources */,
 				106D2AFE2CF76D52009A0BC2 /* AppDelegate.swift in Sources */,
 				106D2B202CF779DE009A0BC2 /* ViewModel.swift in Sources */,
+				103886232CFB18FA00FAD046 /* Extensions.swift in Sources */,
 				106D2B002CF76D52009A0BC2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
