@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct Room {
+public
+struct MXRoom {
     
-    var id: Int
+    var id: String
+    var message: String
     
 }

@@ -38,7 +38,8 @@ final class CoreDataStack {
         
         let privateContext = NSManagedObjectContext(concurrencyType: concurrencyType)
         privateContext.persistentStoreCoordinator = self.container.persistentStoreCoordinator
-
+        privateContext.automaticallyMergesChangesFromParent = true
+        
         return privateContext
         
     }
@@ -88,6 +89,21 @@ final class CoreDataStack {
         }
         catch {
             return nil
+        }
+        
+    }
+    
+    func fetchAll<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, context: NSManagedObjectContext) -> [T] {
+        
+        let request = NSFetchRequest<T>(entityName: T.entityName)
+        request.predicate = predicate
+        
+        do {
+            let results = try context.fetch(request)
+            return results
+        }
+        catch {
+            return []
         }
         
     }
